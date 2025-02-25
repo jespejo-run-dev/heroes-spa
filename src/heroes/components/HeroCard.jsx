@@ -1,4 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router'
+
+const CharactersByHero = ({alter_ego, characters}) => {
+    if(alter_ego === characters) return (<></>);
+
+    return <p className="card-text">Characters: {characters}</p>
+}
 
 export const HeroCard = ({
     id,
@@ -10,6 +17,8 @@ export const HeroCard = ({
 }) => {
 
     const heroImageUrl = `/assets/heroes/${id}.jpg`
+
+    // const charactersByHero = <p className="card-text">Characters: {characters}</p>
 
   return (
     <div className="col">
@@ -25,7 +34,17 @@ export const HeroCard = ({
                     <div className="card-body">
                         <h5 className="card-title">{superhero}</h5>
                         <p className="card-text">{alter_ego}</p>
-                        <p className="card-text">Characters: {characters}</p>
+
+                        <CharactersByHero characters={characters}  alter_ego={alter_ego} />
+
+                        <p className='card-test'>
+                            <small className="text-muted">{first_appearance}</small>
+                        </p>
+
+                        <Link to={`/hero/${id}`}>
+                            Más...
+                        </Link>
+
                     </div>
                 </div>
 
